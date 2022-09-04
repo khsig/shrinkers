@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>유저 리스트</h2>
+    <h4>{%if msg%}{{msg}}{%endif%}</h4>
+    <table class="table table-striped nowrap text-left font-size-10">
+      <thead>
+        <th>ID</th>
+        <th>이름</th>
+        <th>이메일</th>
+        <th>가입일</th>
+        <th>페이플랜</th>
+        <th>가격</th>
+      </thead>
+      {% for u in users %}
+      <tr class={% cycle "table-info" "" %}>
+        <td>{{u.id}}</td>
+        <td>{{u.username}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.date_joined}}</td>
+        <td>{{u.pay_plan.name}}</td>
+        <td>{{u.pay_plan.price}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        {% if users.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?p={{users.previous_page_number }}">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="#">이전</a>
+        </li class="page-item">
+        {% endif %}
+        <li class="page-item">
+          <a class="page-link" href="?p={{users.number|add:1 }}">{{users.number}} / {{users.paginator.num_pages}}</a>
+        </li>
+        {% if users.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?p={{users.next_page_number }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="#">다음</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    <p align="center">
+      <a href="{% url 'index' %}">홈으로</a>
+      <a href="{% url 'register' %}">회원가입</a>
+    </p>
+{% endblock %}
