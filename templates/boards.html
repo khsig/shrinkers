@@ -2,14 +2,12 @@
 {% block content %}
     <h2>유저 리스트</h2>
     <h4>{%if msg%}{{msg}}{%endif%}</h4>
-    <table class="table table-striped nowrap text-left font-size-10">
-      <thead>
+    <table class="table table-hover table-sm" style="width:70%; border:1px; border-collapse:collapse;">
+      <thead class="table-dark" style="text-align:center">
         <th>ID</th>
         <th>이름</th>
         <th>이메일</th>
         <th>가입일</th>
-        <th>페이플랜</th>
-        <th>가격</th>
       </thead>
       {% for u in users %}
       <tr class={% cycle "table-info" "" %}>
@@ -17,8 +15,6 @@
         <td>{{u.username}}</td>
         <td>{{u.email}}</td>
         <td>{{u.date_joined}}</td>
-        <td>{{u.pay_plan.name}}</td>
-        <td>{{u.pay_plan.price}}</td>
       </tr>
       {% endfor %}
     </table>
@@ -49,7 +45,7 @@
         {% endif %}
       </ul>
     </nav>
-    <p align="center">
+    <p test-align="center">
       <a href="{% url 'index' %}">홈으로</a>
       <a href="{% url 'register' %}">회원가입</a>
     </p>

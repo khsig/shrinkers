@@ -18,7 +18,7 @@ def index(request):
     if request.user.is_authenticated is False:
         email = "Anonymous User!"
     print(email)
-    return render(request, "base.html", {"welcome_msg": "Hello FastCampus!"})
+    return render(request, "base.html", {"welcome_msg": "My Profect"})
 
 
 @csrf_exempt
